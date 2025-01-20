@@ -1,0 +1,5 @@
+<div>
+    @for (u of users; track $index) {
+        <app-user-card [user]="u" (RefreshEmit)="ngOnInit()"></app-user-card>
+    }
+</div>
