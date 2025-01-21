@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { UserManager } from '../../services/UserManager';
+import { UserService } from '../../services/user.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './toolbar.component.css'
 })
 export class ToolbarComponent {
-  constructor(private um: UserManager) {}
+  constructor(
+    private userService: UserService
+  ) {}
 
   //Input Fields
   nameField: string = "";
@@ -18,8 +20,8 @@ export class ToolbarComponent {
 
   @Output() refresh: EventEmitter<void> = new EventEmitter<void>();
 
-  AddUser() {
-    this.um.AddUser({name: this.nameField, username: this.unField});
-    this.refresh.emit();
-  }
+  // AddUser() {
+  //   this.userService.AddUser({name: this.nameField, username: this.unField});
+  //   this.refresh.emit();
+  // }
 }

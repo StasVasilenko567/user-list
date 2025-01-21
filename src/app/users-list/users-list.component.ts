@@ -1,21 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { UserManager } from '../../services/UserManager';
+import { Component, inject, OnDestroy, OnInit, Output } from '@angular/core';
+import { UserService } from '../../services/user.service';
 import { User } from '../../models/User';
 import { UserCardComponent } from '../user-card/user-card.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-users-list',
-  imports: [UserCardComponent],
+  imports: [UserCardComponent, AsyncPipe],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.css'
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, OnDestroy {
 
-  users: User[] = [];
+  public userService = inject(UserService);
 
-  constructor(private um: UserManager) {}
+  ngOnInit(): void {
+    this.userService.GetUsers();
+  }
 
-  ngOnInit() {
-    this.users = this.um.GetAll();
+  ngOnDestroy(): void {
+    
   }
 }
+
+// TODO
+
+// Пользователи должны быть внутри этого компонента (не в виде сервиса)

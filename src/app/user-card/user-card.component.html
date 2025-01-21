@@ -1,7 +1,7 @@
 <div>
-    <p>Имя: <b>{{user.name}}</b></p>
-    <p>Ник: <b>{{user.username}}</b></p>
-    <p>Почта: <b>{{user.email}}</b></p>
-    <p>Телефон: <b>{{user.phone}}</b></p>
+    <p>Имя: <b>{{user!.name}}</b></p>
+    <p>Ник: <b>{{user!.username}}</b></p>
+    <p>Почта: <b>{{user?.email}}</b></p>
+    <p>Телефон: <b>{{user?.phone}}</b></p>
     <button (click)="DeleteUser()">Удалить</button>
 </div>

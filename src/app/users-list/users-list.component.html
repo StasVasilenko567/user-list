@@ -1,5 +1,5 @@
 <div>
-    @for (u of users; track $index) {
-        <app-user-card [user]="u" (RefreshEmit)="ngOnInit()"></app-user-card>
+    @for (u of userService.users$ | async; track $index) {
+        <app-user-card [user]="u"></app-user-card>
     }
 </div>

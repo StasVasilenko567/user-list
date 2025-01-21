@@ -1,25 +1,35 @@
-import { Component, ViewChild } from '@angular/core';
-import { UserManager } from '../services/UserManager';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { UserService } from '../services/user.service';
 import { UsersListComponent } from './users-list/users-list.component';
 import { ToolbarComponent } from "./toolbar/toolbar.component";
+import { UserApiService } from '../services/userapi.service';
+import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [UsersListComponent, ToolbarComponent],
-  providers: [UserManager],
+  providers: [UserApiService, HttpClient],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(private um: UserManager) {
-    this.um.AddUser({name: "Peter", username: "OK"});
-    this.um.AddUser({name: "Vazgen", username: "V"});
-  }
+  // constructor(private userService: UserService) {
+  //   this.userService.AddUser({name: "Peter", username: "OK"});
+  //   this.userService.AddUser({name: "Vazgen", username: "V"});
+  // }
 
-  @ViewChild(UsersListComponent, {static: false})
-  private ul_component: UsersListComponent | undefined;
+  // @ViewChild(UsersListComponent, {static: false})
+  // private ul_component: UsersListComponent | undefined;
 
-  RefreshContainer() {
-    this.ul_component?.ngOnInit();
-  }
+  // RefreshContainer() {
+  //   this.ul_component?.ngOnInit();
+  // }
+
+  // private userService = inject(UserService);
+
+  // ngOnInit(): void {
+  //   this.userService.GetUsers();
+  // }
+
 }
