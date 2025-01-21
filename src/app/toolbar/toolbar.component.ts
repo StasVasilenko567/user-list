@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { UserService } from '../user.service';
 import { FormsModule } from '@angular/forms';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,18 +11,20 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './toolbar.component.css'
 })
 export class ToolbarComponent {
-  constructor(
-    private userService: UserService
-  ) {}
+  
+  private userSerice = inject(UserService);
 
   //Input Fields
   nameField: string = "";
   unField: string = "";
 
-  @Output() refresh: EventEmitter<void> = new EventEmitter<void>();
+  public AddUser() {
+    const tempU: User = {
+      name: this.nameField,
+      username: this.unField,
+      id: -1
+    }
 
-  // AddUser() {
-  //   this.userService.AddUser({name: this.nameField, username: this.unField});
-  //   this.refresh.emit();
-  // }
+    this.userSerice.createUser(tempU);
+  }
 }

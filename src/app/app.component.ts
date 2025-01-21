@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { UserService } from './user.service';
 import { UsersListComponent } from './users-list/users-list.component';
 import { ToolbarComponent } from "./toolbar/toolbar.component";
-import { UserApiService } from '../services/userapi.service';
+import { UserApiService } from './userapi.service';
 import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 
 @Component({

@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { User } from '../../models/User';
-import { UserService } from '../../services/user.service';
+import { Component, inject, Input, Output } from '@angular/core';
+import { User } from '../models/User';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-card',
@@ -9,15 +9,12 @@ import { UserService } from '../../services/user.service';
   styleUrl: './user-card.component.css'
 })
 export class UserCardComponent {
-  constructor(
-    private userService: UserService
-  ) {}
+  
+  private userService = inject(UserService);
 
   @Input() user: User | undefined;
-  @Output() Delete: EventEmitter<void> = new EventEmitter();
 
   DeleteUser() {
-    // this.userService.DeleteUser(this.user?.id as number);
-    this.Delete.emit();
+    this.userService.deleteUser(this.user?.id as number);
   }
 }
